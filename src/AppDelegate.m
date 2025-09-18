@@ -8,6 +8,36 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
   self.videoWindows = [NSMutableArray array];
   [self setupStatusBar];
+
+  // 防止 App Nap 导致休眠后播放器被挂起
+  [[NSProcessInfo processInfo]
+      beginActivityWithOptions:NSActivityUserInitiatedAllowingIdleSystemSleep
+                        reason:@"Keep video wallpaper running"];
+
+  // 监听唤醒通知
+  [[[NSWorkspace sharedWorkspace] notificationCenter]
+      addObserver:self
+         selector:@selector(handleWake:)
+             name:NSWorkspaceDidWakeNotification
+           object:nil];
+}
+
+- (void)handleWake:(NSNotification *)notification {
+  NSLog(@"System woke up, resuming video wallpaper...");
+
+  if (self.player) {
+    // 继续播放
+    [self.player seekToTime:self.player.currentTime
+            toleranceBefore:kCMTimeZero
+             toleranceAfter:kCMTimeZero];
+    [self.player play];
+  }
+
+  // 确保窗口层级不丢失
+  for (NSWindow *win in self.videoWindows) {
+    [win setLevel:(NSInteger)CGWindowLevelForKey(kCGDesktopWindowLevelKey)];
+    [win orderBack:nil];
+  }
 }
 
 // 状态栏
