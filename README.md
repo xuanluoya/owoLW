@@ -17,8 +17,8 @@
 ```bash
 git clone --depth=1 https://github.com/xuanluoya/VideoWallpaper && cd VideoWallpaper # 克隆仓库
 make   # 编译应用
-make clean   # 清理编译文件
-open VideoWallpaper   # 打开应用
+make clean   # 清理编译文件，当你需要重新编译时再使用
+open owoLW   # 打开应用
 ```
 
 启动后，你会在菜单栏看到一个“🎬”图标。点击它，然后选择视频。
@@ -43,8 +43,8 @@ A simple macOS dynamic wallpaper app for personal use.
 ```bash
 git clone --depth=1 https://github.com/xuanluoya/VideoWallpaper && cd VideoWallpaper # Clone the repo
 make   # Build the app
-make clean   # Clean build files
-open VideoWallpaper   # Launch the app
+make clean # Clean the compiled file, use it when you need to recompile
+open owoLW   # Launch the app
 ```
 
 After launching, you’ll see a “🎬” icon in your menu bar. Click it, select a video.
