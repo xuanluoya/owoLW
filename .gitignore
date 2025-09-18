@@ -60,6 +60,7 @@ dkms.conf
 
 # Icon must end with two \r
 Icon
+*.icns
 
 
 # Thumbnails
@@ -80,3 +81,5 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
+
+asset
